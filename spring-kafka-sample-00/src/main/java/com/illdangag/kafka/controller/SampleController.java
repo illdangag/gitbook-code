@@ -1,5 +1,6 @@
 package com.illdangag.kafka.controller;
 
+import com.illdangag.kafka.data.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,16 +20,11 @@ public class SampleController {
         this.producer = producer;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/00")
-    public ResponseEntity<String> send00(@RequestParam(name = "message", defaultValue = "", required = false) String message) {
-        producer.sendMessage00(message);
-
-        return ResponseEntity.status(HttpStatus.OK).body("OK");
-    }
-
-    @RequestMapping(method = RequestMethod.GET, value = "/01")
-    public ResponseEntity<String> send01(@RequestParam(name = "message", defaultValue = "", required = false) String message) {
-        producer.sendMessage01(message);
+    @RequestMapping(method = RequestMethod.GET, value = "/user")
+    public ResponseEntity<String> send00(@RequestParam(name = "name", defaultValue = "", required = false) String name,
+                                         @RequestParam(name = "age", defaultValue = "", required = false) int age) {
+        User user = new User(name, age);
+        producer.sendMessage00(user);
 
         return ResponseEntity.status(HttpStatus.OK).body("OK");
     }
