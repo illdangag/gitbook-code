@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 public class KafkaProducer {
-    private final KafkaTemplate<String, Object> kafkaTemplate;
+    private final KafkaTemplate<String, User> kafkaTemplate;
 
     @Autowired
     public KafkaProducer(KafkaTemplate kafkaTemplate) {
@@ -18,6 +18,6 @@ public class KafkaProducer {
 
     public void sendMessage(User user) {
         log.info("Produce: {}", user);
-        this.kafkaTemplate.send("User", user);
+        this.kafkaTemplate.send("User", user); // topic, message
     }
 }

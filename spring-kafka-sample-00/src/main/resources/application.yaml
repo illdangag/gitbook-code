@@ -7,7 +7,7 @@ spring:
       - localhost:9093
       - localhost:9094
     consumer:
-      auto-offset-reset: earliest
+      auto-offset-reset: earliest # consumer가 topic을 가져오는 순서, latest, earliest, none
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
       properties:
