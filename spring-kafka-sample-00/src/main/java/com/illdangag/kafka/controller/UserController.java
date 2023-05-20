@@ -12,11 +12,11 @@ import com.illdangag.kafka.service.KafkaProducer;
 
 @RestController
 @RequestMapping(value = "/send")
-public class SampleController {
+public class UserController {
     private final KafkaProducer producer;
 
     @Autowired
-    public SampleController(KafkaProducer producer) {
+    public UserController(KafkaProducer producer) {
         this.producer = producer;
     }
 
@@ -24,7 +24,7 @@ public class SampleController {
     public ResponseEntity<String> send00(@RequestParam(name = "name", defaultValue = "", required = false) String name,
                                          @RequestParam(name = "age", defaultValue = "", required = false) int age) {
         User user = new User(name, age);
-        producer.sendMessage00(user);
+        producer.sendMessage(user);
 
         return ResponseEntity.status(HttpStatus.OK).body("OK");
     }

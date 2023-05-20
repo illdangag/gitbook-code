@@ -2,12 +2,11 @@ server:
   port: 8081
 spring:
   kafka:
-    bootstrap-servers:
+    bootstrap-servers: # kafka brokers
       - localhost:9092
       - localhost:9093
       - localhost:9094
     consumer:
-      group-id: test-group
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
