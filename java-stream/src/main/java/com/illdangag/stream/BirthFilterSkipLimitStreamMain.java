@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
-public class BirthFilterSkipStreamMain {
+public class BirthFilterSkipLimitStreamMain {
     public static void main(String[] args) throws Exception {
         List<People> peopleList = PeopleCSVReader.get();
 
@@ -22,10 +22,11 @@ public class BirthFilterSkipStreamMain {
         Date date = calendar.getTime();
 
         List<People> filteredList = peopleList.stream()
+                .limit(20) // stream에서 처음부터 20개만 다음 연산으로 전달한다
                 .filter(people -> {
                     return people.getDateOfBirth().after(date);
                 })
-                .skip(10) // stream의 결과중에 처음부터 10개를 건너뛴다
+                .skip(5) // stream의 결과중에 처음부터 5개를 건너뛴다
                 .collect(Collectors.toList());
 
         log.info("filtered list size: {}", filteredList.size());
