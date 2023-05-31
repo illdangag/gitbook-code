@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
-public class FilterStreamMain {
+public class BirthFilterSkipStreamMain {
     public static void main(String[] args) throws Exception {
         List<People> peopleList = PeopleCSVReader.get();
 
@@ -25,8 +25,10 @@ public class FilterStreamMain {
                 .filter(people -> {
                     return people.getDateOfBirth().after(date);
                 })
+                .skip(10) //  filter 메서드를 결과에서 10개의 결과를 건너뛴다
                 .collect(Collectors.toList());
 
+        log.info("filtered list size: {}", filteredList.size());
         filteredList.forEach(people -> {
             log.info("{}", people);
         });
