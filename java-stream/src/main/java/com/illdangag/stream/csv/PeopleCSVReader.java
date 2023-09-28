@@ -21,7 +21,16 @@ public class PeopleCSVReader {
     public static List<People> get() throws IOException {
         URL csvUrl = PeopleCSVReader.class.getClassLoader().getResource("people-100.csv");
         Reader reader = new FileReader(csvUrl.getPath());
+        return getPeopleList(reader);
+    }
 
+    public static List<People> getLargeList() throws IOException {
+        URL csvUrl = PeopleCSVReader.class.getClassLoader().getResource("people-100000.csv");
+        Reader reader = new FileReader(csvUrl.getPath());
+        return getPeopleList(reader);
+    }
+
+    private static List<People> getPeopleList(Reader reader) throws IOException {
         Iterable<CSVRecord> records = CSVFormat.RFC4180.withFirstRecordAsHeader().parse(reader);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return StreamSupport.stream(records.spliterator(), false)
