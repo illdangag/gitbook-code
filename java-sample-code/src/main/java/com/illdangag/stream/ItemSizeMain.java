@@ -1,4 +1,4 @@
-package com.illdangag.stream.performance;
+package com.illdangag.stream;
 
 import lombok.extern.slf4j.Slf4j;
 

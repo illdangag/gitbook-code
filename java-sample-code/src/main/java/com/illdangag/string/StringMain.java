@@ -1,4 +1,4 @@
-package com.illdangag.string.process;
+package com.illdangag.string;
 
 public class StringMain {
     public static void main(String[] args) {
