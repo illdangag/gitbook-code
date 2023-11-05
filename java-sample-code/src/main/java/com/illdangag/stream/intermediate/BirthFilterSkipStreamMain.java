@@ -1,4 +1,4 @@
-package com.illdangag.stream;
+package com.illdangag.stream.intermediate;
 
 import com.illdangag.stream.csv.PeopleCSVReader;
 import com.illdangag.stream.data.People;
@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class BirthFilterSkipStreamMain {
     public static void main(String[] args) throws Exception {
-        List<People> peopleList = PeopleCSVReader.get();
+        List<People> peopleList = PeopleCSVReader.getList();
 
         // 2000년 1월 1일
         Calendar calendar = Calendar.getInstance();

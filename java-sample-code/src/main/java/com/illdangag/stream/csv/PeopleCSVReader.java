@@ -18,7 +18,7 @@ import java.util.stream.StreamSupport;
 public class PeopleCSVReader {
     private PeopleCSVReader() {}
 
-    public static List<People> get() throws IOException {
+    public static List<People> getList() throws IOException {
         URL csvUrl = PeopleCSVReader.class.getClassLoader().getResource("people-100.csv");
         Reader reader = new FileReader(csvUrl.getPath());
         return getPeopleList(reader);
