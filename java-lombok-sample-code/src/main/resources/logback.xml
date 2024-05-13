@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds" debug="false">
+    <property name="LOGS_ABSOLUTE_PATH" value="./log" />
+    <property name="LOG_PATTERN_0" value="[%d{yyyy-MM-dd HH:mm:ss.SSS, GMT+9}][%thread][%-5level][%marker]\(%F:%L\): %m%n" />
+
+    <!-- 콘솔 출력 -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LOG_PATTERN_0}</pattern> <!-- 로그 출력 패턴 -->
+        </encoder>
+    </appender>
+
+    <!-- 파일 출력 -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender"> <!-- RollingFileAppender 사용 -->
+        <file>${LOGS_ABSOLUTE_PATH}/application.log</file> <!-- 파일 경로 및 파일 이름 -->
+        <encoder>
+            <pattern>${LOG_PATTERN_0}</pattern> <!-- 로그 출력 패턴 -->
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"> <!-- 시간으로 파일 분할 정책 -->
+            <fileNamePattern>${LOGS_ABSOLUTE_PATH}/application.%d{yyyy-MM-dd_HH-mm-ss}.%i.log.gz</fileNamePattern> <!-- 분할 파일 이름 패턴 -->
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>500KB</maxFileSize> <!-- 분할 파일 크기 기준 -->
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>10</maxHistory> <!-- 분할된 파일의 최대 개수 -->
+        </rollingPolicy>
+    </appender>
+
+    <root level="DEBUG"> <!-- 로그 출력 기준 -->
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+    </root>
+</configuration>
